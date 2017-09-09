@@ -516,6 +516,8 @@ void QIOSInputContext::scrollToCursor()
     QRect keyboardGeometry = QRectF::fromCGRect(m_keyboardState.keyboardEndRect).toRect();
     QRect availableGeometry = (QRegion(screenGeometry) - keyboardGeometry).boundingRect();
 
+    // Disable push up qml page when keyboard appears
+    /*
     if (!availableGeometry.contains(cursorRect, true)) {
         qImDebug() << "cursor rect" << cursorRect << "not fully within" << availableGeometry;
         int scrollToCenter = -(availableGeometry.center() - cursorRect.center()).y();
@@ -524,6 +526,7 @@ void QIOSInputContext::scrollToCursor()
     } else {
         scroll(0);
     }
+    */
 }
 
 void QIOSInputContext::scroll(int y)
