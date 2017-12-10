@@ -215,6 +215,8 @@ public class QtActivityDelegate
     private final int ImhEmailCharactersOnly = 0x200000;
     private final int ImhUrlCharactersOnly = 0x400000;
     private final int ImhLatinOnly = 0x800000;
+    
+    private final int ImhNoFullscreen = 0x10000000;
 
     // enter key type - must be kept in sync with QTDIR/src/corelib/global/qnamespace.h
     private final int EnterKeyDefault = 0;
@@ -278,6 +280,7 @@ public class QtActivityDelegate
         else
             visibleHeight = m_landscapeKeyboardHeight != 0 ? m_landscapeKeyboardHeight : metrics.heightPixels / 3;
 
+        /*
         if (m_softInputMode != 0) {
             m_activity.getWindow().setSoftInputMode(m_softInputMode);
             final boolean softInputIsHidden = (m_softInputMode & WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN) != 0;
@@ -289,6 +292,7 @@ public class QtActivityDelegate
             else
                 m_activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_UNCHANGED | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         }
+        */
 
         int initialCapsMode = 0;
 
@@ -371,6 +375,9 @@ public class QtActivityDelegate
 
         if (enterKeyType == 0 && (inputHints & ImhMultiLine) != 0)
             imeOptions = android.view.inputmethod.EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+            
+        if ((inputHints & ImhNoFullscreen) != 0)
+            imeOptions |= android.view.inputmethod.EditorInfo.IME_FLAG_NO_FULLSCREEN;
 
         m_editText.setInitialCapsMode(initialCapsMode);
         m_editText.setImeOptions(imeOptions);

@@ -1417,6 +1417,8 @@ public:
         ImhEmailCharactersOnly = 0x200000,
         ImhUrlCharactersOnly = 0x400000,
         ImhLatinOnly = 0x800000,
+        
+        ImhNoFullscreen = 0x10000000,
 
         ImhExclusiveInputMask = 0xffff0000
     };
